@@ -55,7 +55,6 @@ h1 {
     cursor: pointer;
 }
 
-/* make a form to add a new book */
 form {
     background-color: #f3eecf;
     display: flex;
