@@ -4,68 +4,56 @@ const pages = document.getElementById("pages")
 const read = document.getElementById("read")
 const hero = document.querySelector(".hero-section")
 
-const library = [];
+const library = [new Book("The Hobbit", "J.R.R. Tolkien", 295, true)];
+window.onload(updateLibrary());
 
-class Book {
-    constructor(nombre, author, pages, read) {
-        this.nombre = nombre
-        this.author = author
-        this.pages = pages
-        this.read = read
-    }
+function Book(title, author, pages, read) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
 }
-
-
-function testFunction() {
-    hero.innerHTML = ""
-    nombreValue = nombre.value
-    authorValue = author.value
-    pagesValue = pages.value
-    readValue = read.value
-    newBook = new Book(nombreValue, authorValue, pagesValue, readValue) 
-    library.push(newBook)
-    console.log(library)
+function updateLibrary() {
+    const librarySection = document.querySelector(".library-section");
+    librarySection.innerHTML = "";
     library.forEach(book => {
-        let titleElm = document.createElement("h2")
-        titleElm.innerText = book.nombre
-        titleElm.setAttribute(`data-index`, `${library.indexOf(book)}`)
-        hero.appendChild(titleElm)
-        let authorElm = document.createElement("h4")
-        authorElm.innerText = book.author
-        authorElm.setAttribute(`data-index`, `${library.indexOf(book)}`)
-        hero.appendChild(authorElm)
-        let pagesElm = document.createElement("p")
-        pagesElm.innerText = `Number of pages: ${book.pages} ` 
-        pagesElm.setAttribute(`data-index`, `${library.indexOf(book)}`)
-        hero.appendChild(pagesElm)
-        let readElm = document.createElement("button") 
-        readElm.setAttribute(`data-index`, `${library.indexOf(book)}`)
-        readElm.innerText = `${book.read}` 
-        readElm.onclick = function() {
-            let index = this.getAttribute("data-index")
-            library[index].read = "Read"
-            this.innerText = "Read"
-        }
-        hero.appendChild(readElm)
-        let deleteButton = document.createElement("button")
-        deleteButton.innerText = "delete"
-        deleteButton.classList.add("delete-button")
-        deleteButton.setAttribute(`data-index`, `${library.indexOf(book)}`)
-        deleteButton.onclick = function() {
-            let element = deleteButton.dataset.index
-            library.splice(element,1)
-            deleteButton.remove()
-            titleElm.remove()
-            authorElm.remove()
-            pagesElm.remove()
-            readElm.remove()
-        }
-        hero.appendChild(deleteButton)
-    })
-    nombre.value = ""
-    author.value = ""
-    pages.value = ""
-    read.value = ""
+        const bookDiv = document.createElement("div");
+        bookDiv.classList.add("book");
+        bookDiv.innerHTML = `
+            <h2>${book.title}</h2>
+            <p>${book.author}</p>
+            <p>Pages: ${book.pages}</p>
+        `;
+        const readButton = document.createElement("button");
+        book.read ? readButton.innerText = "Read" : readButton.innerText = "Not Read";
+        readButton.classList.add("read-button");
+        readButton.addEventListener("click", () => {  
+            book.read = !book.read 
+            updateLibrary();
+        });
+        bookDiv.appendChild(readButton);
+        const deleteButton = document.createElement("button");
+        deleteButton.classList.add("delete-button");
+        deleteButton.innerText = "Delete";
+        deleteButton.addEventListener("click", () => {
+            library.splice(library.indexOf(book), 1);
+            updateLibrary();
+        });
+        bookDiv.appendChild(deleteButton); 
+        librarySection.appendChild(bookDiv);
+        
+    });
 }
-// get read value
+
+function addBookToLibrary() {
+    const book = new Book(nombre.value, author.value, pages.value, read.checked);
+    console.log(read.checked)
+    library.push(book);
+    console.log(library);
+    updateLibrary();
+}
+
+
+
+
 

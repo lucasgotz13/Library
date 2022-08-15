@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+* {
+    font-family: 'Roboto Mono';
+}
+
+body {
+    background-color: #fefae0;
+}
+
+h1 {
+    text-align: center;
+}
+
+.library-section {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.book {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f1faee;
+    margin: 10px 5px;  
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.book > button {
+    margin: 5px 0;
+}
+
+.read-button {
+    background-color: #faedcd;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.delete-button {
+    background-color: #e63946;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* make a form to add a new book */
+form {
+    background-color: #f3eecf;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+#add-button {
+    background-color: green;
+    color: white;
+    border: none;
+    margin-top: 5px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+input[type=checkbox] {
+    width: 20px;
+    height: 20px;
+    margin: 5px;
+    background-color: green;
+}
+
+input[type=checkbox]:checked {
+    color: green;
+}
