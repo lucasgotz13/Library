@@ -2,7 +2,6 @@ const nombre = document.getElementById("test")
 const author = document.getElementById("author")
 const pages = document.getElementById("pages")
 const read = document.getElementById("read")
-const hero = document.querySelector(".hero-section")
 
 const library = [new Book("The Hobbit", "J.R.R. Tolkien", 295, true)];
 window.onload(updateLibrary());
@@ -47,10 +46,8 @@ function updateLibrary() {
 
 function addBookToLibrary() {
     const book = new Book(nombre.value, author.value, pages.value, read.checked);
-    console.log(read.checked)
     library.push(book);
-    console.log(library);
-    updateLibrary();
+    updateLibrary()
 }
 
 
