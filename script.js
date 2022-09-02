@@ -3,15 +3,18 @@ const author = document.getElementById("author")
 const pages = document.getElementById("pages")
 const read = document.getElementById("read")
 
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+}
+
 const library = [new Book("The Hobbit", "J.R.R. Tolkien", 295, true)];
 window.onload(updateLibrary());
 
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-}
 function updateLibrary() {
     const librarySection = document.querySelector(".library-section");
     librarySection.innerHTML = "";
