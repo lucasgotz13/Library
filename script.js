@@ -2,7 +2,7 @@ const nombre = document.getElementById("test")
 const author = document.getElementById("author")
 const pages = document.getElementById("pages")
 const read = document.getElementById("read")
-
+const form = document.getElementById("form")
 class Book {
     constructor(title, author, pages, read) {
         this.title = title;
@@ -47,7 +47,19 @@ function updateLibrary() {
     });
 }
 
+
+
 function addBookToLibrary() {
+    if (nombre.value == "" || author.value == "" || pages.value == "") {
+        const errorMessage = document.createElement('p')
+        errorMessage.textContent = "An error has occured. Please check if you have filled all the fields."
+        errorMessage.style.color = "red";
+        form.appendChild(errorMessage)
+        setTimeout(() => {
+            errorMessage.remove();
+        }, 3000)
+        return;
+    }; 
     const book = new Book(nombre.value, author.value, pages.value, read.checked);
     library.push(book);
     updateLibrary()
